@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Stream;
 
 @SpringBootApplication
@@ -96,7 +97,6 @@ public class HospitalApplication {
             );
 
             Patient patient = patientRepository.findById(1L).orElse(null);
-            Patient patient1 = patientRepository.findByName("Mohammed");
 
             Medecin medecin = medecinRepository.findByName("aymane");
             RendezVous rendezVous = new RendezVous();
@@ -113,6 +113,46 @@ public class HospitalApplication {
             consultation.setRendezVous(rendezVous1);
             consultation.setRapport("Rapport de la consultation  ..........");
             hospitalService.saveConsultation(consultation);
+
+
+
+
+            // chercher un patient par son id
+            Patient patient1 = patientRepository.findById(1L).get();
+            System.out.println("**********");
+            System.out.println(patient1.getId());
+            System.out.println(patient1.getName());
+            System.out.println(patient1.getDateNaissance());
+            System.out.println("**********");
+
+            // List All Patients
+            List<Patient> patients = patientRepository.findAll();
+            patients.forEach( p -> {
+                System.out.println(p.toString());
+            });
+
+            // Find a patient
+            patient = patientRepository.findById(1L).get();
+            System.out.println("**********");
+            System.out.println(patient.getId());
+            System.out.println(patient.getName());
+            System.out.println(patient.getDateNaissance());
+            System.out.println("**********");
+
+
+
+
+
+
+            // Modifier un patient
+            patient1 = patientRepository.findById(2L).get();
+            patient1.setName("soumaya");
+            System.out.println(patient.toString());
+
+            // supprimer un patient
+            patientRepository.delete(patient1);
+
+
 
         };
     }

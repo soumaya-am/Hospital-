@@ -7,9 +7,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Patient {
+public class Patient  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
